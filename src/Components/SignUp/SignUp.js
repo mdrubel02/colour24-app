@@ -7,11 +7,14 @@ import { auth } from '../../firebase/firebase.init';
 // import { useAuthState, useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { Spinner } from 'react-bootstrap';
 import useFirebase from '../../Hooks/useFirebase';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faEye} from '@fortawesome/free-solid-svg-icons'
 
 const SignUp = () => {
     const [name, setName] = useState('')
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [passwordShown,setPasswordShown]= useState(false);
     const [confirmPassword, setConfirmPassword] = useState('');
     const [error, setError] = useState('');
     const navigate = useNavigate();
@@ -50,6 +53,9 @@ const SignUp = () => {
     //         </div>
     //     )
     // }
+    const togglePassword = ()=>{
+        setPasswordShown(!passwordShown)
+    }
     const handleCreateUser = (event) => {
         event.preventDefault();
         console.log('click')
@@ -85,10 +91,14 @@ const SignUp = () => {
                         <input onBlur={handleEmailBlur} type="email" name="loginEmail" id="loginEmail" placeholder='Enter Email Here' required /> <br />
                     </div>
                     <div className="input-group">
-                        <input onBlur={handlePasswordBlur} type="password" name="loginPassword" id="loginPassword" placeholder='Password' required /> <br />
+                        <input onBlur={handlePasswordBlur}type={passwordShown ? "text": "password"} name="loginPassword" id="loginPassword" placeholder='Password' required /> <br />
+                        <FontAwesomeIcon onClick={togglePassword} className='eye-icon' icon={faEye} ></FontAwesomeIcon>
                     </div>
                     <div className="input-group">
-                        <input onBlur={handleConfirmPasswordBlur} type="password" name="loginPassword" id="loginPassword" placeholder='Confirm Password' required /> <br />
+                        <input onBlur={handleConfirmPasswordBlur} type= {passwordShown? "text" :"password"} name="loginPassword" id="loginPassword" placeholder='Confirm Password' required /> <br />
+                        
+                            <FontAwesomeIcon onClick={togglePassword} className='eye-icon' icon={faEye} ></FontAwesomeIcon>
+                        
                         <p style={{ color: 'red' }}>
                             {error}
                         </p>
