@@ -2,7 +2,7 @@
 
 import { useLocation, useNavigate } from "react-router-dom"
 import { auth } from "../firebase/firebase.init";
-import { createUserWithEmailAndPassword,  updateUserName, veryfayUserEmail,sendEmailVerification,updateProfile, onAuthStateChanged,} from "firebase/auth"
+import { createUserWithEmailAndPassword,  updateUserName, veryfayUserEmail,sendEmailVerification,updateProfile, onAuthStateChanged,signOut} from "firebase/auth"
 import { useEffect, useState } from "react";
 
 const useFirebase = () =>{
@@ -64,13 +64,20 @@ const useFirebase = () =>{
           }
         });
       }, []);
-
+      const handleLogOut = () => {
+        signOut(auth)
+          .then(() => {
+            setUser({});
+          })
+          .catch((error) => {});
+      };
 
       return {
         
         signUpWithEmailAndPass,
     
         user,
+        handleLogOut
         
       };
 

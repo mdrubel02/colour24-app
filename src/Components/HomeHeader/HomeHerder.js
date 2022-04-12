@@ -1,7 +1,7 @@
 import { signOut } from 'firebase/auth';
 import React from 'react';
 import { Button, Container, Nav, Navbar } from 'react-bootstrap';
-// import { useAuthState } from 'react-firebase-hooks/auth';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
 import logo from '../../image/logo.png'
 import './HomeHeader.css'
@@ -13,14 +13,16 @@ import useFirebase from '../../Hooks/useFirebase';
 
 
 const HomeHerder = () => {
-    const {user} = useFirebase(); 
+    const [user] = useAuthState(auth)
+    // const {user,} = useFirebase(); 
     console.log(user?.displayName)
     const navigate = useNavigate()
-    // const [user] = useAuthState(auth)
+    
+    console.log(user);
    
 
     const handleSignOut = () => {
-
+        console.log('click')
         signOut(auth);
     }
 
@@ -42,7 +44,7 @@ const HomeHerder = () => {
                                 <p className=' fs-6 text-success '>Balance: 0.00 tk</p>
                             </div>
                             <div>
-                            <Button className='bg-success mt-3' onClick={handleSignOut} >Sign Out</Button>
+                            <Button className='bg-success mt-2' onClick={handleSignOut} >Sign Out</Button>
                             </div>
                         </Nav>
                     </Container>
