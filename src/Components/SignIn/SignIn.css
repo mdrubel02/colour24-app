@@ -82,6 +82,10 @@
     text-decoration: none;
     color: #167FFF;
 }
+.spinner{
+    text-align: center;
+    margin-top: 300px;
+}
 
 @media (max-width: 576px) { 
     .login-wrapper{
