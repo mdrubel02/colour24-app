@@ -1,13 +1,12 @@
 import { signOut } from 'firebase/auth';
 import React from 'react';
-import { Button, Container, Nav, Navbar } from 'react-bootstrap';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
-import logo from '../../image/logo.png'
+// import logo from '../../image/logo.png'
 import './HomeHeader.css'
 
 import { auth } from '../../firebase/firebase.init';
-import useFirebase from '../../Hooks/useFirebase';
+// import useFirebase from '../../Hooks/useFirebase';
 
 // import { Link } from 'react-router-dom';
 
@@ -17,9 +16,9 @@ const HomeHerder = () => {
     // const {user,} = useFirebase(); 
     console.log(user?.displayName)
     const navigate = useNavigate()
-    
+
     console.log(user);
-   
+
 
     const handleSignOut = () => {
         console.log('click')
@@ -32,24 +31,28 @@ const HomeHerder = () => {
 
     return (
         <div >
-            <div className="bar">
-                <Navbar bg="dark" variant="dark">
-                    <Container>
-                        <Navbar.Brand href="#home">
-                            <img src={logo} width='50px' alt="" />
-                        </Navbar.Brand>
-                        <Nav className="ms-auto">
-                            <div className='balance d-flex  justify-content-center align-items-center px-5 '>
-                                <p className='text-success fs-3 px-3'>{user?.displayName}</p>
-                                <p className=' fs-6 text-success '>Balance: 0.00 tk</p>
-                            </div>
-                            <div>
-                            <Button className='bg-success mt-2' onClick={handleSignOut} >Sign Out</Button>
-                            </div>
-                        </Nav>
-                    </Container>
-                </Navbar>
+            <div className="row bg-dark">
+                <div className="col-sm-6 col-lg-6 col-6">
+                    <div className='balance d-flex justify-content-start align-items-center px-5 '>
+                        <div className='d-flex flex-column justify-content-center align-items-center'>
+                            <span className='text-success fs-4 '>{user?.displayName}</span>
+                            <span className='text-success fs-6'>Balance: 0.00 tk</span>
+                        </div>
+
+                        {/* <button onClick={handleSignOut} className='btn btn-lg text-withe bg-success  mt-2'>Sign Out</button> */}
+                    </div>
+                </div>
+                <div className="col-lg-6 col-sm-6 col-6">
+                    <div className='d-flex justify-content-center align-items-center mt-2'>
+                        {/* <img src={logo} width='50px' alt="" /> */}
+                        <button onClick={handleSignOut} className='btn btn-lg text-withe bg-success  mt-2'>Sign Out</button>
+                    </div>
+                 
+                </div>
             </div>
+
+          
+
 
 
         </div>

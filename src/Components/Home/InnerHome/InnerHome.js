@@ -1,4 +1,4 @@
-// import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import piyas from '../../../image/piyas.jpg'
@@ -6,14 +6,14 @@ import robin from '../../../image/robin.jpg'
 import "./InnerHome.css"
 
 const InnerHome = () => {
-    // const [clock, setClock] = useState()
+    const [clock, setClock] = useState()
 
-    // useEffect(() => {
-    //     setInterval(() => {
-    //         const date = new Date();
-    //         setClock(date.toLocaleTimeString());
-    //     }, 1000);
-    // }, [])
+    useEffect(() => {
+        setInterval(() => {
+            const date = new Date();
+            setClock(date.toLocaleTimeString());
+        }, 1000);
+    }, [])
 
     return (
         <div>
@@ -23,14 +23,14 @@ const InnerHome = () => {
                 <div className='row'>
                     <div className="col-lg-6">
                         <Card>
-                            {/* <p className='text-center'>Time: {clock}</p> */}
+                            <p className='text-center'>Time: {clock}</p>
                             <p className='text-center'>MPL-10:00 AM</p>
                             <Card.Body className='d-flex'>
-                                <img className='pic ml-3' src={piyas} alt="" />
+                                <img className='pic ml-3 img-fluid' src={piyas} alt="" />
                                 <span className='ml-3'>Piyas Juwaru </span>
                                 <p className='px-3'>VS</p>
                                 <img className='pic ml-3' src={robin} alt="" />
-                                <span className='ml-3'>Piyas Juwaru </span>
+                                <span className='ml-3'>robin Juwaru </span>
 
                             </Card.Body>
                             <Link to='/team' className='btn btn-lg btn-success' >Win Team</Link>
